@@ -2,30 +2,6 @@ import streamlit as st #pulls in Streamlit for UI building
 import joblib #allow loading of .pkl files saved from training
 from langdetect import detect #function that guesses the language code from a text string
 from deep_translator import GoogleTranslator #lightweight translator to convert non-English text to English
-import re
-
-def handle_negation(text):
-    """
-    Implements Next Word Negation (NWN):
-    Negates only the word immediately following a negation cue.
-    e.g., "not good" → "not_good"
-    """
-    negation_words = {"not", "no", "never", "n't"}
-    tokens = text.split()
-    result = []
-    skip_next = False
-
-    for i, token in enumerate(tokens):
-        if skip_next:
-            # Prefix the current token with "not_"
-            result.append("not_" + token)
-            skip_next = False
-        else:
-            lower = token.lower()
-            result.append(token)
-            if lower in negation_words:
-                skip_next = True
-    return " ".join(result)
 
 #Load the models and TF-IDF vectorizer
 #load the same TF-IDF vectorizer that is fit during training
@@ -72,7 +48,8 @@ if st.button("Analyse and Predict the Sentiment"):
             review_english = user_review
 
         #preprocess the review given by user as third step
-        review_vector = tfidf.transform([review_english])
+        review_processed = handle_negation(review_english) 
+        review_vector = tfidf.transform([review_processed])
 
         #prediction using chosen model as fourth step
         model = models[model_choice]
