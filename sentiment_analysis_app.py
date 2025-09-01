@@ -5,26 +5,20 @@ from deep_translator import GoogleTranslator #lightweight translator to convert 
 import re
 
 def handle_negation(text):
-    """
-    Implements Next Word Negation (NWN):
-    Negates only the word immediately following a negation cue.
-    e.g., "not good" → "not_good"
-    """
     negation_words = {"not", "no", "never", "n't"}
     tokens = text.split()
     result = []
     skip_next = False
 
-    for i, token in enumerate(tokens):
+    for token in tokens:
+        lower = token.lower()
         if skip_next:
-            # Prefix the current token with "not_"
             result.append("not_" + token)
             skip_next = False
+        elif lower in negation_words:
+            skip_next = True
         else:
-            lower = token.lower()
             result.append(token)
-            if lower in negation_words:
-                skip_next = True
     return " ".join(result)
 
 #Load the models and TF-IDF vectorizer
