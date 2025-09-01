@@ -85,4 +85,4 @@ if st.button("Analyse and Predict the Sentiment"):
         else:
             st.error("Predicted Sentiment: Negative 🥲")
 
-    st.write("The application can make mistake. Check before use.")
+    st.write("The application can make mistake. Check before you take the result.")
