@@ -5,7 +5,9 @@ from deep_translator import GoogleTranslator #lightweight translator to convert 
 import re
 
 def handle_negation(text):
-    negation_words = {"not", "no", "never", "n't"}
+    negation_words = {"not", "no", "never"}
+    text = re.sub(r"\b(\w+)(n't)\b", r"\1 not", text)
+    
     tokens = text.split()
     result = []
     skip_next = False
