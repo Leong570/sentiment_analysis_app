@@ -7,7 +7,7 @@ import re
 def handle_negation(text):
     negation_words = {"not", "no", "never"}
     text = re.sub(r"\b(\w+)(n't)\b", r"\1 not", text)
-    
+
     tokens = text.split()
     result = []
     skip_next = False
@@ -31,7 +31,7 @@ tfidf = joblib.load("tfidf_vectorizer.pkl")
 models = {
     "Complement Naive Bayes": joblib.load("cnb_model.pkl"),
     "Logistic Regression": joblib.load("lg_model.pkl"),
-    "SVM": joblib.load("svm_model.pkl")
+    "Support Vector Machine": joblib.load("svm_model.pkl")
 }
 
 #streamlit UI
