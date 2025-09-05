@@ -66,14 +66,15 @@ if st.button("Analyse and Predict the Sentiment"):
         review_processed = handle_negation(review_english) 
         review_vector = tfidf.transform([review_processed])
 
+        st.write("Results: ")
         #prediction using chosen model as fourth step
         for model_name, model in models.items():
             sentiment = model.predict(review_vector)[0]
 
             #display the sentiment as final step
             if sentiment == 1:
-                st.success(f"{model_name}'s Prediction: Positive 😁")
+                st.success(f"{model_name}: Positive 😁")
             else:
-                st.error(f"{model_name}'s Prediction: Negative 🥲")
+                st.error(f"{model_name}: Negative 🥲")
 
         st.write("The application can make mistake. Check before you take the result.")
