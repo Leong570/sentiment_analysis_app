@@ -58,7 +58,7 @@ if st.button("Analyse and Predict the Sentiment"):
         st.write(f"Detected Language: {lang_name}")
 
         #translate if not English as second step
-        if lang != "en":
+        if lang_code != "en":
             translator = GoogleTranslator(source="auto", target="en") #auto --> let the translator auto-detect
             review_english = translator.translate(user_review)
             st.write(f"Translated to English: {review_english}")
