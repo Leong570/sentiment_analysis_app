@@ -1,6 +1,7 @@
 import streamlit as st #pulls in Streamlit for UI building
 import joblib #allow loading of .pkl files saved from training
 from langdetect import detect #function that guesses the language code from a text string
+import pycountry
 from deep_translator import GoogleTranslator #lightweight translator to convert non-English text to English
 import re
 
@@ -48,11 +49,13 @@ if st.button("Analyse and Predict the Sentiment"):
     else:
         #Detect language as the first step
         try:
-            lang = detect(user_review)
+            lang_code = detect(user_review)
+            lang_name = pycountry.languages.get(alpha_2=lang_code).name
+
         except:
-            lang = "unknown" #unable to detect the language
+            lang_name = "unknown" #unable to detect the language
         
-        st.write(f"Detected Language: {lang}")
+        st.write(f"Detected Language: {lang_name}")
 
         #translate if not English as second step
         if lang != "en":
