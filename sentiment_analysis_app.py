@@ -37,11 +37,6 @@ models = {
 #streamlit UI
 st.title("🎬🍿Movie Review Sentiment Analyser")
 
-#dropdown to choose model
-#show a dropdown list/selection box with options of different model
-#store user selection in the model_choice variable
-#model_choice = st.selectbox("Choose a model:", list(models.keys()))
-
 #text field for user to input movie review
 user_review = st.text_area("Enter a movie review: ")
 
