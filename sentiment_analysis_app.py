@@ -72,7 +72,7 @@ if st.button("Analyse and Predict the Sentiment"):
         review_vector = tfidf.transform([review_processed])
 
         #prediction using chosen model as fourth step
-        for model_name, model in model.items():
+        for model_name, model in models.items():
             sentiment = model.predict(review_vector)[0]
 
             #display the sentiment as final step
