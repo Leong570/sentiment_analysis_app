@@ -3,3 +3,4 @@ joblib
 langdetect
 deep-translator
 scikit-learn
+pycountry
