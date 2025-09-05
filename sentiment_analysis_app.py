@@ -50,7 +50,8 @@ if st.button("Analyse and Predict the Sentiment"):
         #Detect language as the first step
         try:
             lang_code = detect(user_review)
-            lang_name = pycountry.languages.get(alpha_2=lang_code).name
+            lang_code_short = lang_code.split("-")[0] 
+            lang_name = pycountry.languages.get(alpha_2=lang_code_short).name
 
         except:
             lang_name = "unknown" #unable to detect the language
