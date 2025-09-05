@@ -72,8 +72,8 @@ if st.button("Analyse and Predict the Sentiment"):
 
             #display the sentiment as final step
             if sentiment == 1:
-                st.success(f"{model_name}: Positive 😁")
+                st.success(f"{model_name}'s Prediction: Positive 😁")
             else:
-                st.error(f"{model_name}: Negative 🥲")
+                st.error(f"{model_name}'s Prediction: Negative 🥲")
 
         st.write("The application can make mistake. Check before you take the result.")
