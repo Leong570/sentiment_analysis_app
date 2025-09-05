@@ -40,7 +40,7 @@ st.title("🎬🍿Movie Review Sentiment Analyser")
 #dropdown to choose model
 #show a dropdown list/selection box with options of different model
 #store user selection in the model_choice variable
-model_choice = st.selectbox("Choose a model:", list(models.keys()))
+#model_choice = st.selectbox("Choose a model:", list(models.keys()))
 
 #text field for user to input movie review
 user_review = st.text_area("Enter a movie review: ")
@@ -72,13 +72,13 @@ if st.button("Analyse and Predict the Sentiment"):
         review_vector = tfidf.transform([review_processed])
 
         #prediction using chosen model as fourth step
-        model = models[model_choice]
-        sentiment = model.predict(review_vector)[0]
+        for model_name, model in model.items():
+            sentiment = model.predict(review_vector)[0]
 
-        #display the sentiment as final step
-        if sentiment == 1:
-            st.success("Predicted Sentiment: Positive 😁")
-        else:
-            st.error("Predicted Sentiment: Negative 🥲")
+            #display the sentiment as final step
+            if sentiment == 1:
+                st.success("Predicted Sentiment: Positive 😁")
+            else:
+                st.error("Predicted Sentiment: Negative 🥲")
 
-    st.write("The application can make mistake. Check before you take the result.")
+        st.write("The application can make mistake. Check before you take the result.")
